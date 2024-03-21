@@ -1,29 +1,22 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<title>SVG Wheel of Fortune</title>
-<link href="https://fonts.googleapis.com/css?family=Raleway:800" rel="stylesheet">
-<link href="style.css" rel="stylesheet" type="text/css">
-<script src="script.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wheel of Fortune</title>
+    <base href="/Your-Repository-Name/">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-<div class="container">
-  <div class="row">
-      <div class="luckywheel">
+    <main>
+        <div class="wheel">
+            <canvas id="wheel"></canvas>
+            <div class="center__circle">
+                <p>Win</p>
+            </div>
+        </div>
+    </main>
 
-<link href="https://laercio10rosa.github.io/luckwheel/style.css" rel="stylesheet"/>
-<script src="https://laercio10rosa.github.io/luckwheel/script.js"></script>
-
-        
- <!--  ___________________________________ SVG wheel ____________________________________   -->
-        
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 730 730">
-
-  <g class="wheel">
-    <circle class="frame" cx="365" cy="365" r="347.6"/>
-    <g class="sticks">
-      <rect x="360.4" width="9.3" height="24.33" rx="4" ry="4"/>
-      <rect x="352.8" y="713.2" width="24.3" height="9.27" rx="4" ry="4" transform="translate(1082.8 352.8) rotate(90)"/>
-      <rect x="176.4" y="54.8" width="24.3" height="9.27" rx="4" ry="4" transform="translate(145.8 -133.6) rotate(60)"/>
-      <rect x="529.2" y="665.9" width="24.3
+    <script src="https://cdn.jsdelivr.net/npm/three@0.130.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net
