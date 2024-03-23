@@ -1,64 +1,34 @@
-// luckywheel animation with Greensock  ---------------------------------
+const canvas = document.getElementById('luckwheel');
+const ctx = canvas.getContext('2d');
 
-$(document).ready(function() {
-//  Setup variables
-var wheel = $(".wheel"),
-    active = $(".active"),
-    currentRotation,
-    lastRotation = 0,
-    tolerance,
-    deg,
-    
-    $btnPlay = $("#btnPlay"),
-    $btnSlowMo = $("#btnSlowMo");
+canvas.width = 400;
+canvas.height = 400;
 
-//  Random degree
-    function getRandomInt(min, max) {
-      return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
-    var deg = getRandomInt(360, 1080);
-    console.log(deg);
+const segments = 8;
+const sliceDegree = 360 / segments;
+const color = ['#ff6663', '#ffc069', '#ffff66', '#60ff60', '#66ffff', '#6660ff', '#c266ff', '#ff66c2'];
 
-//  Creating the Timeline
-    var indicator = new TimelineMax();
-    var spinWheel = new TimelineMax();
-    indicator.to(active, .13, {rotation: -10, transformOrigin:"65% 36%", ease:Power1.easeOut})
-             .to(active, .13, {rotation: 3, ease:Power4.easeOut})
-             .add("end");
+for (let i = 0; i < segments; i++) {
+  ctx.beginPath();
+  ctx.fillStyle = color[i];
+  ctx.moveTo(canvas.width / 2, canvas.height / 2);
+  ctx.arc(canvas.width / 2, canvas.height / 2, canvas.width / 2, i * sliceDegree * Math.PI / 180, (i + 1) * sliceDegree * Math.PI / 180);
+  ctx.fill();
+}
 
-//  Luckywheel animation
-    spinWheel.to(wheel, 5, {rotation: deg, transformOrigin:"50% 50%", ease:Power4.easeOut, onUpdate: (
-    function(){    
-      currentRotation = Math.round(this.target[0]._gsTransform.rotation);    //_gsTransform: current position of the wheel
-      tolerance = currentRotation - lastRotation;
-      
-        console.log("lastRot: "+lastRotation);
-        console.log("currentRot: "+currentRotation);
-        console.log("tol: "+tolerance);
-        console.log(indicator.progress());
-        console.log("spinwheelprogress: "+spinWheel.progress());
-      
-      if(Math.round(currentRotation) % (360/12) <= tolerance){
-        if(indicator.progress() > .2 || indicator.progress() === 0){
-          indicator.play(0);
-        }
-      }
-      lastRotation = currentRotation;
-    }
-    )});
-    spinWheel.add("end");
- //   Buttons
-  $btnPlay.click(
-    function(){
-      indicator.timeScale(1).seek(0);
-      spinWheel.timeScale(1).seek(0);
-    }
-  );
-
-  $btnSlowMo.click(
-    function(){
-      indicator.timeScale(.2).seek(.5);
-      spinWheel.timeScale(.2).seek(.5);
-    }
-  );
-});
+function spinLuckwheel() {
+  const degree = Math.random() * 360;
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  for (let i = 0; i < segments; i++) {
+    ctx.beginPath();
+    ctx.fillStyle = color[i];
+    ctx.moveTo(canvas.width / 2, canvas.height / 2);
+    ctx.arc(canvas.width / 2, canvas.height / 2, canvas.width / 2, i * sliceDegree * Math.PI / 180, (i + 1) * sliceDegree * Math.PI / 180);
+    ctx.fill();
+  }
+  ctx.beginPath();
+  ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+  ctx.moveTo(canvas.width / 2, canvas.height / 2);
+  ctx.arc(canvas.width / 2, canvas.height / 2, canvas.width / 2, degree * Math.PI / 180, (degree + sliceDegree) * Math.PI / 180);
+  ctx.fill();
+}
